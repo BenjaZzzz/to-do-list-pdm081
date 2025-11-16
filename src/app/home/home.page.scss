@@ -1,27 +1,84 @@
-#container {
+@import url("https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+ion-content {
+  --background: #8FABD4;
+
+  h2{
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    margin: 0 0 0px 0;
+  }
+
+  p{
+    font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    color: #000000;
+
+    margin: 0;
+  }
+
+  ion-card {
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  ion-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  .icon-star {
+    font-size: 20px;
+  }
+
+  ion-content {
+    padding: 10px;
+  }
+
+  ion-fab-button {
+    --background: #4A70A9;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --ion-color-base: #4A70A9;
+    --ion-color-contrast: #FFFFFF;
+    --ion-color-contrast-rgb: 255, 255, 255;
+    --ion-color-shade: #3A567F;
+    --ion-color-tint: #5A80B9;
+  }
+
+  ion-fab-button:hover {
+    --background: #fff;
+    --color: #000000;
+    --box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+
+  ion-fab-button:active {
+    --background: #000000;
+    --color: #FFFFFF;
+  }
+
+  .empty-container {
   text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+  margin-top: 35%;
+  opacity: 0.8;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
+.empty-icon {
+  font-size: 90px;
+  color: #000000;
+  margin-bottom: 10px;
 }
 
-#container p {
+.empty-container h2 {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.empty-container p {
   font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+  margin-bottom: 20px;
+  color: var(--ion-color-medium);
 }
 
-#container a {
-  text-decoration: none;
+
 }
