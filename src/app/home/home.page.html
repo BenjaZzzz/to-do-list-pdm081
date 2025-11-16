@@ -1,20 +1,118 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      To-do app
-    </ion-title>
+    <ion-item line_style="none">
+      <ion-label
+        class="titulo-principal"
+        style="font-weight: bold; font-size: 3em"
+      >
+        <h1>To-Do List</h1>
+        <p style="font-weight: 400; color: #433456">
+          {{ todayDate | date:'fullDate' }}
+        </p>
+      </ion-label>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <!-- <ion-card>
+  <ion-item>
+    <ion-header>
+      <ion-card-subtitle>
+        Priority Levels
+      </ion-card-subtitle>
+    </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <ion-item>
+      <ion-item style="margin-right: 10px; color: red;">
+        <ion-icon name="radio-button-on-outline" color="red"></ion-icon>
+        <p>High</p>
+      </ion-item>
+
+      <ion-item style="margin-right: 10px; color: blue;">
+        <ion-icon name="radio-button-on-outline" color="blue"></ion-icon>
+        <p>Medium</p>
+      </ion-item>
+
+      <ion-item style="margin-right: 10px; color: green;">
+        <ion-icon name="radio-button-on-outline" color="green"></ion-icon>
+        <p>Low</p>
+      </ion-item>
+    </ion-item>
+
+
+  </ion-item>
+</ion-card>
+-->
+
+  <ion-card *ngFor="let item of todoList" class="ion-margin">
+    <ion-card-header>
+      <!-- <ion-card-subtitle [style.color]="item.priority === 'High' ? 'red'
+      :(item.priority === 'Low') ? 'green'
+      :(item.priority === 'Medium') ? 'blue': 'black'"
+      style="font-weight: 600;"> -->
+      <ion-card-subtitle
+        [style.color]="getColor(item.priority)"
+        style="font-weight: 600; margin: 5px 0px 1px 15px"
+      >
+        <h2 style="font-size: 20px">{{item.category}}</h2>
+      </ion-card-subtitle>
+      <ion-item>
+        <ion-icon
+          class="icon-star"
+          name="star"
+          size="Medium"
+          [style.color]="getColor(item.priority)"
+          style="margin: 3px 5px 2px"
+        ></ion-icon>
+        <!-- <ion-icon *ngIf="item.priority == 'Medium'" color="blue" name="star" size="small" style="margin: 5px 5px;"></ion-icon>
+      <ion-icon *ngIf="item.priority == 'Low'" color="green" name="star" size="small" style="margin: 5px 5px;"></ion-icon> -->
+        <ion-label>
+          <h3 style="margin: 10px 10px 2px; font-size: 25px; font-weight: 400">
+            {{item.todoName}}
+          </h3>
+        </ion-label>
+      </ion-item>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label>
+        <p style="margin: 0px 0px 0px 25px">
+          Date: {{item.todoDate | date:'fullDate'}}
+        </p>
+      </ion-label>
+    </ion-card-content>
+    <ion-row
+      class="action-btn"
+      style="display: flex; justify-content: space-around; margin-bottom: 10px"
+    >
+      <!--  -->
+      <ion-item>
+        <ion-icon name="share-outline"></ion-icon>
+        <p>Share</p>
+      </ion-item>
+
+      <ion-item button (click)="markComplete(item)">
+        <ion-icon name="checkmark-outline"></ion-icon>
+        <p>Complete</p>
+      </ion-item>
+
+      <ion-item button (click)="deleteTask(item)">
+        <ion-icon name="trash-outline"></ion-icon>
+        <p>Cancel</p>
+      </ion-item>
+    </ion-row>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addTasks()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <!-- MENSAJE CUANDO NO HAY TAREAS -->
+  <div *ngIf="todoList.length === 0" class="empty-container">
+    <ion-icon name="clipboard-outline" class="empty-icon"></ion-icon>
+    <h2>No tasks available</h2>
+    <p>Add a new one to get started</p>
   </div>
 </ion-content>
